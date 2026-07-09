@@ -1,0 +1,33 @@
+itle: suspicious TLD tryout
+id: 1
+status: test
+description: detecting suspicious top level domains from list
+references:
+    - https://github.com/mthcht/awesome-lists/blob/main/Lists/TLDs/suspicious_tlds_list_2023.csv
+author: pegevsebirah
+date: 2026-07-09
+modified:
+tags:
+    - TLD
+    - domains
+logsource:
+    category: webserver
+detection:
+    selection_tld:
+      cs-host|endswith:
+        - ".icu"
+        - ".ml"
+        - ".py"
+    selection_suspicicious:
+      cs-uri | contains
+        - "login"
+        - "update"
+        - "secure"
+        - "verify"
+        - "admin"
+        - "definitely_not_phishing"
+    condition: selection
+
+falsepositives:
+    - "enter here"
+level: medium
